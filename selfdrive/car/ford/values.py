@@ -52,6 +52,7 @@ BUTTON_STATES = {
 
 class CAR(StrEnum):
   BRONCO_SPORT_MK1 = "FORD BRONCO SPORT 1ST GEN"
+  EDGE_MK2 = "FORD EDGE 2ND GEN"
   ESCAPE_MK4 = "FORD ESCAPE 4TH GEN"
   EXPLORER_MK6 = "FORD EXPLORER 6TH GEN"
   F_150_MK14 = "FORD F-150 14TH GEN"
@@ -60,6 +61,7 @@ class CAR(StrEnum):
 
 
 CANFD_CAR = {CAR.F_150_MK14}
+CAN_EDGE = {CAR.EDGE_MK2}
 
 
 class RADAR:
@@ -93,6 +95,7 @@ class FordCarInfo(CarInfo):
 
 CAR_INFO: Dict[str, Union[CarInfo, List[CarInfo]]] = {
   CAR.BRONCO_SPORT_MK1: FordCarInfo("Ford Bronco Sport 2021-22"),
+  CAR.EDGE_MK2: FordCarInfo("Ford Edge 2020-23", "Adaptive Cruise Control with Lane Centering"),
   CAR.ESCAPE_MK4: [
     FordCarInfo("Ford Escape 2020-22"),
     FordCarInfo("Ford Kuga 2020-22", "Adaptive Cruise Control with Lane Centering"),
@@ -152,6 +155,24 @@ FW_VERSIONS = {
       b'M1PA-14C204-GF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
       b'N1PA-14C204-AC\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
       b'N1PA-14C204-AD\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+    ],
+  },
+  CAR.EDGE_MK2: {
+    (Ecu.eps, 0x730, None): [
+      b'M2GC-14D003-AA\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+    ],
+    (Ecu.abs, 0x760, None): [
+      b'M2GC-2D053-CB\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'M2GC-2D053-EA\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+    ],
+    (Ecu.fwdRadar, 0x764, None): [
+      b'JX7T-14D049-AD\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+    ],
+    (Ecu.fwdCamera, 0x706, None): [
+      b'KT4T-14F397-AF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+    ],
+    (Ecu.engine, 0x7E0, None): [
+      b'N2GA-14C204-ND\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
     ],
   },
   CAR.ESCAPE_MK4: {
