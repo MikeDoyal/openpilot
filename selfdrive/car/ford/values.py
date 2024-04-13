@@ -52,6 +52,7 @@ BUTTON_STATES = {
 
 class CAR(StrEnum):
   BRONCO_SPORT_MK1 = "FORD BRONCO SPORT 1ST GEN"
+  EDGE_MK2 = "FORD EDGE 2ND GEN"
   ESCAPE_MK4 = "FORD ESCAPE 4TH GEN"
   EXPLORER_MK6 = "FORD EXPLORER 6TH GEN"
   F_150_MK14 = "FORD F-150 14TH GEN"
@@ -62,6 +63,7 @@ class CAR(StrEnum):
 
 
 CANFD_CAR = {CAR.F_150_MK14, CAR.F_150_LIGHTNING_MK1, CAR.MUSTANG_MACH_E_MK1}
+CAN_EDGE = {CAR.EDGE_MK2}
 
 
 class RADAR:
@@ -99,6 +101,7 @@ class FordCarInfo(CarInfo):
 
 CAR_INFO: Dict[str, Union[CarInfo, List[CarInfo]]] = {
   CAR.BRONCO_SPORT_MK1: FordCarInfo("Ford Bronco Sport 2021-22"),
+  CAR.EDGE_MK2: FordCarInfo("Ford Edge 2020-23", "Adaptive Cruise Control with Lane Centering"),
   CAR.ESCAPE_MK4: [
     FordCarInfo("Ford Escape 2020-22"),
     FordCarInfo("Ford Kuga 2020-22", "Adaptive Cruise Control with Lane Centering"),
